@@ -1,0 +1,1554 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="JavaScript Puzzlers is a funny test of your knowledge of javascript">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <title>Javascript Puzzlers or: do you really know JavaScript?</title>
+  <!-- yahooapis has an invalid cert, WTF -->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <link href="/assets/application-fa6d250b72dde7b0a7a4d97b637edeeb.css" media="all" rel="stylesheet" />
+  <script src="/assets/application-43a97661e5ffecbe1f01887359f78339.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-46289053-2', 'javascript-puzzlers.herokuapp.com');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+<body class="pure-u-g">
+
+<div class="pure-u-1">
+  <h1>JavaScript Puzzlers!</h1>
+<h2>or: do you really know JavaScript?</h2>
+<h3>(or: how insane do you think JavaScript actually is?)</h3>
+<p class="banner">
+  Hi Internet!
+  <br>
+  This page wasn't ready yet, but a bunch of people are coming in, so sorry you caught <a href="http://riffraff.info" rel="me">us</a> in underwear.
+  <br>
+  You can <a href="https://twitter.com/JSPuzzlers" rel="me">follow @JSPuzzlers</a> to know when this is ready, <a href="mailto:rff.rff+jspuzzlers@gmail.com">write me</a> or <a href="#doge" data-wallet="D5QsPmUy4yGovAkiAH7VEocW8KUyJedypv" class="dogetip">tip some DogeCoins</a> ^_^.
+</p>
+<p class="disclaimer">
+  This is a JavaScript quiz based on the behaviour as of <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.19">ECMA 262 (5.1)</a> in a browser environment.</br>
+  Behaviour may be different if you try it in a node or jsc REPL, for example <code>this</code> and <code>global</code> are different at the top level of a firefox console, node repl or jsc shell. Sorry about that.
+</p>
+<div class="running-score">
+  <span class="close">&times;</span>
+  <span class="numbers">
+    <span class="scored">0</span>
+    /
+    <span class="attempts">0</span>
+    of
+    <span class="total">44</span>
+  </span>
+  <div class="feedback hidden"></div>
+  <div class="l-box social">
+  <ul>
+    <li>
+      <a href="https://twitter.com/share"
+        class="twitter-share-button"
+        data-via="JSPuzzlers"
+        data-url="http://javascript-puzzlers.herokuapp.com"
+        data-lang="en">Tweet</a>
+    </li>
+    <li>
+      <div class="g-plusone" data-size="medium" data-href="http://javascript-puzzlers.herokuapp.com">
+      </div>
+    </li>
+    <li>
+      <div class="fb-share-button"
+        data-href="http://javascript-puzzlers.herokuapp.com"
+        data-layout="button_count"></div>
+    </li>
+  </ul>
+</div>
+
+</div>
+
+<ol>
+    <li class="pure-g puzzle" data-puzzle-hash="550819249">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[1, 2, 3]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[0, 1, 2]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+
+what you actually get is
+<code>
+  [1, NaN, NaN]
+</code>
+because <code>parseInt</code> takes two parameters (val, radix) and <code>map</code> passes <strong>3</strong> (element, index, array)
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1889552841">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+[typeof null, null instanceof Object]
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>[&quot;object&quot;, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[null, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;object&quot;, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>typeof</code> will always return "object" for native non callable objects.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1844488318">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+[ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>an error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[9, 0]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[9, NaN]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[9, undefined]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Per spec: reduce on an empty array without an initial value throws <code>TypeError</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="605475010">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var val = &#39;smtg&#39;;
+console.log(&#39;Value is &#39; + (val === &#39;smtg&#39;) ? &#39;Something&#39; : &#39;Nothing&#39;);
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>Value is Something
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Value is Nothing
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>NaN
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        it actually prints '<code>Something</code>' the <code>+</code> operator has higher precedence than the ternary one.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1481196172">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var name = &#39;World!&#39;;
+(function () {
+    if (typeof name === &#39;undefined&#39;) {
+        var name = &#39;Jack&#39;;
+        console.log(&#39;Goodbye &#39; + name);
+    } else {
+        console.log(&#39;Hello &#39; + name);
+    }
+})();
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>Goodbye Jack
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Hello Jack
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Hello undefined
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Hello World</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        The <code>var</code> declaration is hoisted to the function scope, but the initialization is not.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3828034299">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var END = Math.pow(2, 53);
+var START = END - 100;
+var count = 0;
+for (var i = START; i &lt;= END; i++) {
+    count++;
+}
+console.log(count);
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>0
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>100
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>101
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        it goes into an infinite loop, 2^53 is the highest possible number in javascript, and 2^53+1 gives 2^53, so <code>i</code> can never become larger than that.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="433383726">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var ary = [0,1,2];
+ary[10] = 10;
+ary.filter(function(x) { return x === undefined;});
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[undefined × 7]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[0, 1, 2, 10]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[undefined]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>Array.prototype.filter</code> is not invoked for the missing elements.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3812735826">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var two   = 0.2
+var one   = 0.1
+var eight = 0.8
+var six   = 0.6
+[two - one == one, eight - six == two]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[true,  true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, false]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[true,  false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        JavaScript does not have precision math, even though sometimes it works correctly.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="2078336921">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function showCase(value) {
+    switch(value) {
+    case &#39;A&#39;:
+        console.log(&#39;Case A&#39;);
+        break;
+    case &#39;B&#39;:
+        console.log(&#39;Case B&#39;);
+        break;
+    case undefined:
+        console.log(&#39;undefined&#39;);
+        break;
+    default:
+        console.log(&#39;Do not know!&#39;);
+    }
+}
+showCase(new String(&#39;A&#39;));
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>Case A
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Case B
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>Do not know!
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>undefined</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>switch</code> uses <code>===</code> internally and <code>new String(x) !== x</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1578880391">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function showCase2(value) {
+    switch(value) {
+    case &#39;A&#39;:
+        console.log(&#39;Case A&#39;);
+        break;
+    case &#39;B&#39;:
+        console.log(&#39;Case B&#39;);
+        break;
+    case undefined:
+        console.log(&#39;undefined&#39;);
+        break;
+    default:
+        console.log(&#39;Do not know!&#39;);
+    }
+}
+showCase2(String(&#39;A&#39;));
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>Case A
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Case B
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Do not know!
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>undefined</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>String(x)</code> does not create an object but does return a string, i.e. <code>typeof String(1) === "string"</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="641253173">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function isOdd(num) {
+    return num % 2 == 1;
+}
+function isEven(num) {
+    return num % 2 == 0;
+}
+function isSane(num) {
+    return isEven(num) || isOdd(num);
+}
+var values = [7, 4, &#39;13&#39;, -9, Infinity];
+values.map(isSane);
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[true, true, true, true, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[true, true, true, true, false]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[true, true, true, false, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[true, true, false, false, false]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>Infinity % 2</code> gives <code>NaN</code>, <code>-9 % 2</code> gives <code>-1</code> (modulo operator keeps sign so it's result is only reliable compared to 0)
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3976068285">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+parseInt(3, 8)
+parseInt(3, 2)
+parseInt(3, 0)
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>3, 3, 3
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>3, 3, NaN
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>3, NaN, NaN
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>3</code> doesn't exist in base <code>2</code>, so obviously that's a <code>NaN</code>, but what about <code>0</code>? <code>parseInt</code> will consider a bogus radix and assume you meant <code>10</code>, so it returns <code>3</code>.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="4133009437">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+Array.isArray( Array.prototype )
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>Array.prototype</code> is an <code>Array</code>. Go figure.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1480816623">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = [0];
+if ([0]) {
+  console.log(a == true);
+} else {
+  console.log(&quot;wut&quot;);
+}
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;wut&quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>[0]</code> as a boolean is considered <code>true</code>. Alas, when using it in the comparisons it gets converted in a different way and all goes to hell.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3242201261">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+[]==[]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>==</code> is the spawn of satan.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="2011165602">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+&#39;5&#39; + 3
+&#39;5&#39; - 3
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>&quot;53&quot;, 2
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>8, 2
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Strings know about <code>+</code> and will use it, but they are ignorant of <code>-</code> so in that case the strings get converted to numbers.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1454054620">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+1 + - + + + - + 1
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>2
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>1
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Great fun.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3281462634">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var ary = Array(3);
+ary[0]=2
+ary.map(function(elem) { return &#39;1&#39;; });
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[2, 1, 1]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;1&quot;, &quot;1&quot;, &quot;1&quot;]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[2, &quot;1&quot;, &quot;1&quot;]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        The result is <code>["1", undefined × 2]</code>, as <code>map</code> is only invoked for elements of the <code>Array</code> which have been initialized.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="927824437">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function sidEffecting(ary) {
+  ary[0] = ary[2];
+}
+function bar(a,b,c) {
+  c = 10
+  sidEffecting(arguments);
+  return a + b + c;
+}
+bar(1,1,1)
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>3
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>12
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        The result is <code>21</code>, in javascript variables are tied to the <code>arguments</code> object so changing the variables changes <code>arguments</code> and changing arguments changes the local variables even when they are not in the same scope.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1146880933">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = 111111111111111110000,
+    b = 1111;
+a + b;
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>111111111111111111111
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>111111111111111110000
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>NaN
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Infinity</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Lack of precision for numbers in JavaScript affects both small and big numbers.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1547899645">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var x = [].reverse;
+x();
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>undefined
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>window</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>[].reverse</code> will return <code>this</code> and when invoked without an explicit receiver object it will default to the default <code>this</code> AKA <code>window</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="98137596">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+Number.MIN_VALUE &gt; 0
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>Number.MIN_VALUE</code> is the smallest value bigger than zero, <code>-Number.MAX_VALUE</code> gets you a reference to something like the most negative number.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="56942969">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+[1 &lt; 2 &lt; 3, 3 &lt; 2 &lt; 1]
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>[true, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[true, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        This is parsed as <code>(1 &gt; 2) &gt; 3</code> and <code>(3 &gt; 2) &gt; 1</code>.
+Than it's implicit conversions at work:  <code>true</code> gets intified and is <code>1</code>, while false gets intified and becomes <code>0</code>.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1004285737">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+// the most classic wtf
+2 == [[[2]]]
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>undefined
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        both objects get converted to strings and in both cases the resulting string is <code>"2"</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="2830900762">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+3.toString()
+3..toString()
+3...toString()
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>&quot;3&quot;, error, error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;3&quot;, &quot;3.0&quot;, error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>error, &quot;3&quot;, error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>3.x</code> is a valid syntax to define "3" with a mantissa of <code>x</code>, <code>toString</code> is not a valid number, but the empty string is.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="614153915">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+(function(){
+  var x = y = 1;
+})();
+console.log(y);
+console.log(x);
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>1, 1
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error, error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>1, error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>y</code> is an automatic global, not a function local one.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3885610804">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = /123/,
+    b = /123/;
+a == b
+a === b
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>true, true
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>true, false
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>false, false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Per spec <quote>Two regular expression literals in a program evaluate to regular expression objects that never compare as === to each other even if the two literals' contents are identical.</quote>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1947505584">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = [1, 2, 3],
+    b = [1, 2, 3],
+    c = [1, 2, 4]
+a ==  b
+a === b
+a &gt;   c
+a &lt;   c
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>false, false, false, true
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>false, false, false, false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>true,  true,  false, true
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+
+Arrays are compared lexicographically with <code>&gt;</code> and <code>&lt;</code>, but not with <code>==</code> and <code>===</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3589536699">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = {}, b = Object.prototype;
+[a.prototype === b, Object.getPrototypeOf(a) === b]
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>[false, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[true, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Functions have a <code>prototype</code> property but other objects don't so <code>a.prototype</code> is <code>undefined</code>. <br>
+Every <code>Object</code> instead has an internal property accessible via <code>Object.getPrototypeOf</code>
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1362643533">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function f() {}
+var a = f.prototype, b = Object.getPrototypeOf(f);
+a === b
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>null
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>f.prototype</code> is the object that will become the parent of any objects created with <code>new f</code> while <code>Object.getPrototypeOf</code> returns the parent in the inheritance hierarchy.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1269591631">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function foo() { }
+var oldName = foo.name;
+foo.name = &quot;bar&quot;;
+[oldName, foo.name]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;&quot;, &quot;&quot;]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[&quot;foo&quot;, &quot;foo&quot;]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;foo&quot;, &quot;bar&quot;]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>name</code> is a read only property. Why it doesn't throw an error when assigned, I do not know.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3375046992">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+&quot;1 2 3&quot;.replace(/\d/g, parseInt)
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>&quot;1 2 3&quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;0 1 2&quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;NaN 2 3&quot;
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>&quot;1 NaN 3&quot;</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>String.prototype.replace</code> invokes the callback function with multiple arguments where the first is the match, then there is one argument for each capturing group, then there is the offset of the matched substring and finally the original string itself. so <code>parseInt</code> will be invoked with arguments <code>[1, 0]</code>, <code>[2, 2]</code>, <code>[3, 4]</code>.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1921171315">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function f() {}
+var parent = Object.getPrototypeOf(f);
+f.name // ?
+parent.name // ?
+typeof eval(f.name) // ?
+typeof eval(parent.name) //  ?
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>&quot;f&quot;, &quot;Empty&quot;, &quot;function&quot;, &quot;function&quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;f&quot;, undefined, &quot;function&quot;, error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>&quot;f&quot;, &quot;Empty&quot;, &quot;function&quot;, error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        The function prototype object is defined somewhere, has a name, can be invoked, but it's not in the current scope.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="2432198890">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var lowerCaseOnly =  /^[a-z]+$/;
+[lowerCaseOnly.test(null), lowerCaseOnly.test()]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[true, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[true, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, true]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        the argument is converted to a string with the abstract <code>ToString</code> operation, so it is <code>"null"</code> and <code>"undefined"</code>.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="4231974582">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+[,,,].join(&quot;, &quot;)
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>&quot;, , , &quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;undefined, undefined, undefined, undefined&quot;
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>&quot;, , &quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&quot;&quot;</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        JavaScript allows a trailing comma when defining arrays, so that turns out to be an array of three undefined.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="852201032">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = {class: &quot;Animal&quot;, name: &#39;Fido&#39;};
+a.class
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>&quot;Animal&quot;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>Object
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>an error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        The answer is: it depends on the browser. <code>class</code> is a reserved word, but it is accepted as a property name by Chrome, Firefox and Opera. It will fail in IE. On the other hand, everybody will accept most other reserved words (<code>int</code>, <code>private</code>, <code>throws</code> etc) as variable names too, while <code>class</code> is verboten.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="462112512">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = new Date(&quot;epoch&quot;)
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>Thu Jan 01 1970 01:00:00 GMT+0100 (CET)
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>current time
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        You get "<code>Invalid Date</code>", which is an actual <code>Date</code> object (<code>a instanceof Date</code> is <code>true</code>). But invalid. This is because the time is internally kept as a <code>Number</code>, which in this case it's <code>NaN</code>.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="158706070">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = Function.length,
+    b = new Function().length
+a === b
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        It's false. <code>Function.length</code> is defined to be <code>1</code>. On the other hand, the <code>length</code> property of the <code>Function</code> prototype object is defined to be <code>0</code>.
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3671621881">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = Date(0);
+var b = new Date(0);
+var c = new Date();
+[a === b, b === c, a === c]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[true, true, true]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[false, false, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, true, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[true, false, false]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        When <code>Date</code> is invoked as a constructor it returns an object relative to the epoch (Jan 01 1970). When the argument is missing it returns the current date. When it is invoked as a function, it returns a <code>String</code> representation of the current time.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="3901693173">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var min = Math.min(), max = Math.max()
+min &lt; max
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>true
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>false
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>Math.min</code> returns <code>+Infinity</code> when supplied an empty argument list. Likewise, <code>Math.max</code> returns <code>-Infinity</code>.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="1642931420">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function captureOne(re, str) {
+  var match = re.exec(str);
+  return match &amp;&amp; match[1];
+}
+var numRe  = /num=(\d+)/ig,
+    wordRe = /word=(\w+)/i,
+    a1 = captureOne(numRe,  &quot;num=1&quot;),
+    a2 = captureOne(wordRe, &quot;word=1&quot;),
+    a3 = captureOne(numRe,  &quot;NUM=2&quot;),
+    a4 = captureOne(wordRe,  &quot;WORD=2&quot;);
+[a1 === a2, a3 === a4]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[true, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, false]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[true, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, true]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Regular expressions in JavaScript <strong>if</strong> defined using the <code>/g</code> flag will carry a state across matches, even if they are actually used on different strings (the <code>lastIndex</code> property). This means <code>a3</code> will be <code>null</code> as the regular expression was applied starting from the index of the last matched string, even if it was a different one.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="2216963060">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+var a = new Date(&quot;2014-03-19&quot;),
+    b = new Date(2014, 03, 19);
+[a.getDay() === b.getDay(), a.getMonth() === b.getMonth()]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[true, true]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[true, false]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[false, true]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[false, false]</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        JavaScript inherits 40 years old design from C: days are 1-indexed in C's <code>struct tm</code>, but months are 0 indexed. In addition to that, <code>getDay</code> returns the 0-indexed day of the week, to get the 1-indexed day of the month you have to use <code>getDate</code>, which doesn't return a <code>Date</code> object.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle" data-puzzle-hash="445179607">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+if (&#39;http://giftwrapped.com/picture.jpg&#39;.match(&#39;.gif&#39;)) {
+  &#39;a gif file&#39;
+} else {
+  &#39;not a gif file&#39;
+}
+        </code>
+      </div>
+
+        <a class="answer correct pure-u-5-24">
+          <code>&#39;a gif file&#39;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>&#39;not a gif file&#39;
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>error
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        <code>String.prototype.match</code> silently converts the string into a regular expression, without escaping it, thus the '<code>.</code>' becomes a metacharacter matching '<code>/</code>'.
+
+      </p>
+    </li>
+    <li class="pure-g puzzle last" data-puzzle-hash="3088138764">
+      <div class="question pure-u-1">
+          What is the result of this expression? (or multiple ones)
+        <code>
+
+function foo(a) {
+    var a;
+    return a;
+}
+function bar(a) {
+    var a = &#39;bye&#39;;
+    return a;
+}
+[foo(&#39;hello&#39;), bar(&#39;hello&#39;)]
+        </code>
+      </div>
+
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;hello&quot;, &quot;hello&quot;]
+</code>
+        </a>
+        <a class="answer correct pure-u-5-24">
+          <code>[&quot;hello&quot;, &quot;bye&quot;]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>[&quot;bye&quot;, &quot;bye&quot;]
+</code>
+        </a>
+        <a class="answer  pure-u-5-24">
+          <code>other</code>
+        </a>
+      <p class="explanation pure-u-1 hidden">
+        Variabled declarations are hoisted, but in this case since the variable exists already in the scope, they are removed altogether. In <code>bar()</code> the variable declaration is removed but the assignment remains, so it has effect.
+
+      </p>
+    </li>
+</ol>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.2";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  <script type="text/javascript">
+(function() {
+ var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+ po.src = 'https://apis.google.com/js/platform.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+  </script>
+
+<div class="footer pure-u-1">
+  <div class="l-box social">
+  <ul>
+    <li>
+      <a href="https://twitter.com/share"
+        class="twitter-share-button"
+        data-via="JSPuzzlers"
+        data-url="http://javascript-puzzlers.herokuapp.com"
+        data-lang="en">Tweet</a>
+    </li>
+    <li>
+      <div class="g-plusone" data-size="medium" data-href="http://javascript-puzzlers.herokuapp.com">
+      </div>
+    </li>
+    <li>
+      <div class="fb-like"
+        data-href="http://javascript-puzzlers.herokuapp.com"
+        data-layout="standard" data-action="like"
+        data-show-faces="false"
+        data-share="true" data-width="225">
+      </div>
+    </li>
+  </ul>
+</div>
+
+  <div class="credits">
+    Proudly sponsored by <a href="http://circleme.com" title="Keeps you up to date with all your passions">CircleMe</a>
+    <br>
+    Ideas stolen from <a href="http://wtfjs.com">wtfjs</a>, <a href="http://blogs.adobe.com/charles/2013/10/javascript-puzzlers-vanjs.html">Charles Bihis</a> and <a href="https://www.destroyallsoftware.com/talks/wat">Gary Bernhardt</a>.
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+</html>
